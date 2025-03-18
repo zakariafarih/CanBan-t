@@ -1,5 +1,4 @@
 import { CONSTANTS } from "./index";
-import uuid from "react-uuid";
 
 export interface AddCategoryAction {
   type: typeof CONSTANTS.ADD_CATEGORY;
