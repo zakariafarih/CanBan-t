@@ -1,0 +1,254 @@
+:root {
+    /* Primary branding colors & typical theming: */
+    --primary-color: #6366f1; /* Indigo for primary actions */
+    --primary-hover: #4f46e5;
+    --secondary-color: #a5b4fc;
+    --success-color: #22c55e;
+    --danger-color: #ef4444;
+    --text-primary: #1e293b;
+    --text-secondary: #64748b;
+    --background-color: #f8fafc;
+    --card-background: #ffffff;
+    --border-color: #e2e8f0;
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    --gradient-primary: linear-gradient(135deg, #6366f1, #4f46e5);
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+  }
+  
+  /* Glass-like container with a premium style */
+  .accordion-listview-container {
+    max-width: 1000px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  /* Header section with brand-like gradient text */
+  .accordion-listview-header {
+    margin-bottom: 2rem;
+    text-align: center;
+    position: relative;
+  }
+  
+  .accordion-listview-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 1.5rem;
+  }
+  
+  /* "New List" row styling */
+  .new-list-row {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    max-width: 600px;
+    margin: 0 auto;
+    background: white;
+    padding: 1rem;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+  }
+  
+  .new-list-input {
+    flex: 1;
+    padding: 0.875rem 1rem;
+    border-radius: var(--radius-md);
+    border: 2px solid var(--border-color);
+    font-size: 1rem;
+    transition: all 0.2s ease;
+  }
+  
+  .new-list-input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+  }
+  
+  .new-list-btn {
+    background: var(--gradient-primary);
+    border: none;
+    padding: 0.875rem 1.5rem;
+    border-radius: var(--radius-md);
+    color: white;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    min-width: 140px;
+  }
+  .new-list-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+  }
+  
+  /* Accordion item styling for each list */
+  .list-accordion-item {
+    margin-bottom: 1rem;
+    border: none;
+  }
+  
+  .list-accordion-item .accordion-header {
+    margin-bottom: 0.5rem;
+  }
+  
+  .list-accordion-item .accordion-button {
+    border-radius: var(--radius-md);
+    background: white;
+    border: 1px solid var(--border-color);
+    padding: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    transition: all 0.2s ease;
+  }
+  
+  .list-accordion-item .accordion-button:not(.collapsed) {
+    background: var(--gradient-primary);
+    color: white;
+  }
+  .list-accordion-item .accordion-button:focus {
+    box-shadow: none !important;
+  }
+  
+  .list-accordion-item .accordion-body {
+    background: white;
+    border-radius: var(--radius-md);
+    padding: 1.25rem;
+    box-shadow: var(--shadow-sm);
+  }
+  
+  /* Row that shows the list title + edit/delete buttons */
+  .list-header-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+  .list-name {
+    font-size: 1.1rem;
+    margin-right: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+  
+  /* Edit & Delete icon buttons */
+  .list-header-actions {
+    display: flex;
+    gap: 0.75rem;
+  }
+  
+  .list-header-actions button {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-sm);
+    border: none;
+    transition: all 0.2s ease;
+  }
+  .list-header-actions button:hover {
+    transform: translateY(-1px);
+  }
+  
+  /* Editing a list name */
+  .edit-list-title {
+    display: flex;
+    gap: 0.5rem;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .edit-list-input {
+    flex: 1;
+    border-radius: var(--radius-md);
+    border: 2px solid var(--border-color);
+    padding: 0.5rem;
+    font-size: 1rem;
+  }
+  
+  /* The tasks area */
+  .task-list {
+    display: grid;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  /* Row to add new tasks inside a specific list */
+  .add-task-row {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    background: var(--background-color);
+    border-radius: var(--radius-md);
+    margin-top: 1rem;
+  }
+  
+  .add-task-row input {
+    flex: 1;
+    padding: 0.875rem 1rem;
+    border-radius: var(--radius-md);
+    border: 2px solid var(--border-color);
+    font-size: 1rem;
+    transition: all 0.2s ease;
+  }
+  .add-task-row input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+  }
+  
+  .add-task-row button {
+    background: var(--success-color);
+    color: white;
+    border: none;
+    padding: 0.875rem 1.5rem;
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    transition: all 0.2s ease;
+    min-width: 120px;
+  }
+  .add-task-row button:hover:not(:disabled) {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-sm);
+  }
+  .add-task-row button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+  
+  /* Empty state styling if there are no lists */
+  .empty-state {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: white;
+    border-radius: var(--radius-lg);
+    border: 2px dashed var(--border-color);
+    margin-top: 1rem;
+  }
+  
+  .empty-state-icon {
+    width: 64px;
+    height: 64px;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+  }
+  
+  .empty-state h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+  }
+  
+  .empty-state p {
+    color: var(--text-secondary);
+    font-size: 1rem;
+  }

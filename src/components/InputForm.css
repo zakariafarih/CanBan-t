@@ -1,0 +1,36 @@
+.inputform-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .inputform-card {
+    min-height: 40px;
+    min-width: 280px;
+    padding: 0.5rem;
+  }
+  
+  .inputform-textarea {
+    resize: none;
+    width: 100%;
+    outline: none;
+    border: none;
+    font-size: 1rem;
+  }
+  
+  .inputform-buttons {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .inputform-close-btn {
+    background-color: #6b7280;
+    border: none;
+    padding: 0.45rem 0.7rem;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  .inputform-close-btn:hover {
+    background-color: #4b5563;
+  }

@@ -1,0 +1,37 @@
+.action-btn-list {
+    width: 300px;
+    min-height: 40px;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    cursor: pointer;
+    color: #333;
+    padding: 8px;
+    text-align: center;
+    margin-top: 8px;
+    transition: background-color 0.2s ease;
+  }
+  
+  .action-btn-list:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+  
+  .action-btn-card {
+    width: 260px;
+    min-height: 30px;
+    background-color: rgba(0, 0, 0, 0.07);
+    border-radius: 6px;
+    cursor: pointer;
+    color: #333;
+    padding: 6px;
+    margin-left: 8px;
+    margin-top: 8px;
+    transition: background-color 0.2s ease;
+  }
+  
+  .action-btn-card:hover {
+    background-color: rgba(0, 0, 0, 0.15);
+  }
+  
+  .action-form-wrapper {
+    margin-top: 8px;
+  }

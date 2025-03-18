@@ -1,0 +1,11 @@
+.boardview-container {
+    margin-top: 1rem;
+  }
+  
+  .boardview-list-container {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    overflow-x: auto;
+  }
+  
