@@ -3,64 +3,77 @@ import { CONSTANTS } from "./index";
 export interface AddCardAction {
   type: typeof CONSTANTS.ADD_CARD;
   payload: {
-    text: string;
+    categoryId: string;
     listId: string;
+    text: string;
+    groups?: string[];
   };
 }
 
 export interface EditCardAction {
   type: typeof CONSTANTS.EDIT_CARD;
   payload: {
-    id: string;
+    categoryId: string;
     listId: string;
+    id: string;
     newText: string;
+    newGroups?: string[];
   };
 }
 
 export interface DeleteCardAction {
   type: typeof CONSTANTS.DELETE_CARD;
   payload: {
-    id: string;
+    categoryId: string;
     listId: string;
+    id: string;
   };
 }
 
 export interface ToggleCardDoneAction {
   type: typeof CONSTANTS.TOGGLE_CARD_DONE;
   payload: {
+    categoryId: string;
     listId: string;
     cardId: string;
   };
 }
 
-export const addCard = (listId: string, text: string): AddCardAction => {
-  return {
-    type: CONSTANTS.ADD_CARD,
-    payload: { text, listId },
-  };
-};
+export const addCard = (
+  categoryId: string,
+  listId: string,
+  text: string,
+  groups: string[] = []
+): AddCardAction => ({
+  type: CONSTANTS.ADD_CARD,
+  payload: { categoryId, listId, text, groups },
+});
 
 export const editCard = (
-  id: string,
+  categoryId: string,
   listId: string,
-  newText: string
-): EditCardAction => {
-  return {
-    type: CONSTANTS.EDIT_CARD,
-    payload: { id, listId, newText },
-  };
-};
+  cardId: string,
+  newText: string,
+  newGroups?: string[]
+): EditCardAction => ({
+  type: CONSTANTS.EDIT_CARD,
+  payload: { categoryId, listId, id: cardId, newText, newGroups },
+});
 
-export const deleteCard = (id: string, listId: string): DeleteCardAction => {
-  return {
-    type: CONSTANTS.DELETE_CARD,
-    payload: { id, listId },
-  };
-};
+export const deleteCard = (
+  categoryId: string,
+  listId: string,
+  cardId: string
+): DeleteCardAction => ({
+  type: CONSTANTS.DELETE_CARD,
+  payload: { categoryId, listId, id: cardId },
+});
 
-export const toggleCardDone = (listId: string, cardId: string): ToggleCardDoneAction => {
-  return {
-    type: CONSTANTS.TOGGLE_CARD_DONE,
-    payload: { listId, cardId },
-  };
-};
+export const toggleCardDone = (
+  categoryId: string,
+  listId: string,
+  cardId: string
+): ToggleCardDoneAction => ({
+  type: CONSTANTS.TOGGLE_CARD_DONE,
+  payload: { categoryId, listId, cardId },
+});

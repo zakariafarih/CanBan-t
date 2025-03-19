@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import { Card, Button, Dropdown } from "react-bootstrap";
 import { Draggable } from "react-beautiful-dnd";
-import { connect } from "react-redux";
-import { editCard, deleteCard } from "../actions/cardActions";
-import TextArea from "react-textarea-autosize";
+import { connect, useSelector } from "react-redux";
+import { faCircleCheck, faCircleXmark, faEllipsisV } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEllipsisV } from "@fortawesome/free-solid-svg-icons";
+import TextArea from "react-textarea-autosize";
+
+import { RootState } from "../reducers";
+import { editCard, deleteCard, toggleCardDone } from "../actions/cardActions";
 import "./ListCard.css";
+import "../components/AppleSwitch.css";
 
 interface ListCardProps {
   text: string;
@@ -27,6 +30,10 @@ const ListCard: React.FC<ListCardProps> = ({
   group,
   dispatch
 }) => {
+  const activeCategoryId = useSelector(
+    (state: RootState) => state.categoriesState.activeCategoryId
+  );
+
   const [isEditing, setIsEditing] = useState(false);
   const [cardText, setCardText] = useState(text);
 
@@ -37,16 +44,19 @@ const ListCard: React.FC<ListCardProps> = ({
   };
 
   const saveCard = () => {
-    if (dispatch) {
-      dispatch(editCard(id, listId, cardText));
-    }
+    if (!activeCategoryId || !dispatch) return;
+    dispatch(editCard(activeCategoryId, listId, id, cardText));
     setIsEditing(false);
   };
 
   const handleDeleteCard = () => {
-    if (dispatch) {
-      dispatch(deleteCard(id, listId));
-    }
+    if (!activeCategoryId || !dispatch) return;
+    dispatch(deleteCard(activeCategoryId, listId, id));
+  };
+
+  const onToggleDone = () => {
+    if (!activeCategoryId || !dispatch) return;
+    dispatch(toggleCardDone(activeCategoryId, listId, id));
   };
 
   const renderEditForm = () => (
@@ -57,16 +67,25 @@ const ListCard: React.FC<ListCardProps> = ({
           autoFocus
           value={cardText}
           onChange={handleChange}
-          onBlur={() => null}
           className="listcard-edit-textarea"
         />
       </Card>
       <div className="listcard-edit-btns">
-        <Button variant="success" onClick={saveCard}>
-          Save
+        <Button
+          variant="success"
+          size="sm"
+          onClick={saveCard}
+          className="btn-save"
+        >
+          <FontAwesomeIcon icon={faCircleCheck} /> Save
         </Button>
-        <Button variant="secondary" onClick={closeForm}>
-          X
+        <Button
+          variant="secondary"
+          size="sm"
+          onClick={closeForm}
+          className="btn-cancel"
+        >
+          <FontAwesomeIcon icon={faCircleXmark} /> Cancel
         </Button>
       </div>
     </div>
@@ -92,6 +111,12 @@ const ListCard: React.FC<ListCardProps> = ({
                     <small className="listcard-group">Group: {group}</small>
                   )}
                 </div>
+                {/* Apple-style switch for "done" */}
+                <label className="switch">
+                  <input type="checkbox" checked={done} onChange={onToggleDone} />
+                  <span className="slider round"></span>
+                </label>
+
                 <Dropdown>
                   <Dropdown.Toggle className="listcard-dropdown-btn">
                     <FontAwesomeIcon icon={faEllipsisV} />

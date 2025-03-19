@@ -28,7 +28,7 @@ const InputForm = React.memo((props: InputFormProps) => {
     handleAddList,
   } = props;
 
-  const handleClick = () => {
+  const handleConfirm = () => {
     if (list) {
       handleAddList();
     } else {
@@ -44,16 +44,23 @@ const InputForm = React.memo((props: InputFormProps) => {
           autoFocus
           value={text}
           onChange={onChange}
-          onBlur={closeForm}
           className="inputform-textarea"
         />
       </Card>
       <div className="inputform-buttons">
-        <Button variant="success" onMouseDown={handleClick}>
+        <Button
+          variant="primary"
+          onMouseDown={handleConfirm}
+          className="inputform-save-btn"
+        >
           {buttonTitle}
         </Button>
-        <Button className="inputform-close-btn">
-          <FontAwesomeIcon icon={faTimes} color="white" />
+        <Button
+          variant="outline-danger"
+          onMouseDown={closeForm}
+          className="inputform-cancel-btn"
+        >
+          <FontAwesomeIcon icon={faTimes} />
         </Button>
       </div>
     </div>

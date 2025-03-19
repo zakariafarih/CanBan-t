@@ -5,11 +5,12 @@ import { sort } from "../actions/listActions";
 import ActionButton from "../components/ActionButton";
 import List from "../components/List";
 import "./BoardView.css";
+import { RootState } from "../reducers";
 
 interface BoardViewProps {
   lists: any[];
   dispatch?: any;
-  searchTerm?: string; // optional search
+  searchTerm?: string; 
 }
 
 class BoardView extends PureComponent<BoardViewProps> {
@@ -29,11 +30,6 @@ class BoardView extends PureComponent<BoardViewProps> {
       );
     }
   };
-
-  /** 
-   * If you want to filter cards by searchTerm, do it here. 
-   * For simplicity, ignoring searchTerm in BoardView. 
-   */
 
   render() {
     const { lists } = this.props;
@@ -67,8 +63,15 @@ class BoardView extends PureComponent<BoardViewProps> {
   }
 }
 
-const mapStateToProps = (state: any) => ({
-  lists: state.lists,
-});
+function mapStateToProps(state: RootState) {
+  const activeCatId = state.categoriesState.activeCategoryId;
+  const category = state.categoriesState.categories.find(
+    (c) => c.id === activeCatId
+  );
+  return {
+    categoryId: activeCatId,
+    lists: category ? category.lists : [],
+  };
+}
 
 export default connect(mapStateToProps)(BoardView);

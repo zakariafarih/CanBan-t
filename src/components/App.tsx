@@ -1,13 +1,12 @@
-// src/components/App.tsx
 import React, { PureComponent } from "react";
 import { connect } from "react-redux";
 import { Container, Nav, Navbar, Button, Modal, Form } from "react-bootstrap";
 import BoardView from "./BoardView";
 import ListView from "./ListView";
 import SavedListsView from "./SavedListsView";
-import CategoryLanding from "./CategoryLanding"; // new
+import CategoryLanding from "./CategoryLanding";
 import { RootState } from "../reducers";
-import { faTable, faList, faBook, faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faTable, faList, faBook } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { motion, AnimatePresence } from "framer-motion";
 import "bootstrap/dist/css/bootstrap.css";
@@ -17,7 +16,7 @@ type ScreenType = "list" | "board" | "saved-lists";
 
 interface AppProps {
   lists?: any[];
-  activeCategoryId?: string | null; // from Redux
+  activeCategoryId?: string | null;
 }
 
 interface AppState {
@@ -25,8 +24,7 @@ interface AppState {
   showModal: boolean;
   modalMode: "newList" | "newTask";
   searchTerm: string;
-  // whether we are on landing or main
-  onLanding: boolean; 
+  onLanding: boolean;
 }
 
 class App extends PureComponent<AppProps, AppState> {
@@ -35,10 +33,9 @@ class App extends PureComponent<AppProps, AppState> {
     showModal: false,
     modalMode: "newList",
     searchTerm: "",
-    onLanding: true, // start on landing
+    onLanding: true,
   };
 
-  /** We'll call this when user picks a category in CategoryLanding */
   handleCategoryChosen = () => {
     this.setState({ onLanding: false });
   };
@@ -55,17 +52,17 @@ class App extends PureComponent<AppProps, AppState> {
   openModal = (mode: "newList" | "newTask") => {
     this.setState({ showModal: true, modalMode: mode });
   };
+
   closeModal = () => {
     this.setState({ showModal: false });
   };
 
   handleModalSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // TODO: implement adding new list or task if needed
+    // TODO: implement if needed
     this.closeModal();
   };
 
-  /** Renders the main 3 tabs (List, Board, Saved Lists) content */
   renderMainContent() {
     const { activeScreen, searchTerm } = this.state;
     switch (activeScreen) {
@@ -80,12 +77,10 @@ class App extends PureComponent<AppProps, AppState> {
   }
 
   render() {
-    // If user hasn't chosen a category yet, show CategoryLanding
     if (this.state.onLanding || !this.props.activeCategoryId) {
       return <CategoryLanding onCategoryChosen={this.handleCategoryChosen} />;
     }
 
-    // Otherwise, show our normal UI
     return (
       <div className="app-wrapper">
         <Navbar bg="light" expand="lg" className="navbar-custom">
@@ -108,7 +103,6 @@ class App extends PureComponent<AppProps, AppState> {
                 <FontAwesomeIcon icon={faBook} /> Saved Lists
               </Nav.Link>
             </Nav>
-
             <div className="d-flex align-items-center gap-2">
               <Form className="d-flex search-form">
                 <Form.Control
@@ -120,14 +114,12 @@ class App extends PureComponent<AppProps, AppState> {
                   value={this.state.searchTerm}
                 />
               </Form>
-              {/* Button to go back to category landing */}
               <Button variant="outline-info" onClick={() => this.setState({ onLanding: true })}>
                 Change Category
               </Button>
             </div>
           </Container>
         </Navbar>
-
         <Container fluid className="main-content">
           <AnimatePresence mode="wait">
             <motion.div
@@ -141,8 +133,6 @@ class App extends PureComponent<AppProps, AppState> {
             </motion.div>
           </AnimatePresence>
         </Container>
-
-        {/* Modal for Creating New List or Task */}
         <Modal show={this.state.showModal} onHide={this.closeModal} centered>
           <Form onSubmit={this.handleModalSubmit}>
             <Modal.Header closeButton>
@@ -192,7 +182,6 @@ class App extends PureComponent<AppProps, AppState> {
                   Or Create New List
                 </Button>
               )}
-
               <Button variant="secondary" onClick={this.closeModal}>
                 Cancel
               </Button>
@@ -207,7 +196,6 @@ class App extends PureComponent<AppProps, AppState> {
   }
 }
 
-// If you still keep the old "lists" reducer, we can pass them here
 function mapStateToProps(state: RootState) {
   return {
     lists: state.lists,

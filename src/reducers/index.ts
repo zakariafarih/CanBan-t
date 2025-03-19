@@ -1,10 +1,7 @@
 import { combineReducers } from "redux";
-import listReducer from "./listReducer"
 import categoryReducer from "./categoryReducer";
 
 const rootReducer = combineReducers({
-  lists: listReducer,
-
   categoriesState: categoryReducer,
 });
 

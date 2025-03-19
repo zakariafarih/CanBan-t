@@ -3,10 +3,12 @@ import { connect } from "react-redux";
 import { addList, addCard } from "../actions";
 import InputForm from "../components/InputForm";
 import "./ActionButton.css";
+import { RootState } from "../reducers";
 
 interface ActionButtonProps {
   list?: boolean;
   listId?: string;
+  activeCategoryId?: string | null;
   dispatch?: any;
 }
 
@@ -34,19 +36,19 @@ class ActionButton extends PureComponent<ActionButtonProps, ActionButtonState> {
   };
 
   handleAddList = () => {
-    const { dispatch } = this.props;
+    const { dispatch, activeCategoryId } = this.props;
     const { text } = this.state;
-    if (text && dispatch) {
-      dispatch(addList(text));
+    if (text && dispatch && activeCategoryId) {
+      dispatch(addList(activeCategoryId, text));
       this.setState({ text: "" });
     }
   };
 
   handleAddCard = () => {
-    const { dispatch, listId } = this.props;
+    const { dispatch, listId, activeCategoryId } = this.props;
     const { text } = this.state;
-    if (text && dispatch && listId) {
-      dispatch(addCard(listId, text));
+    if (text && dispatch && listId && activeCategoryId) {
+      dispatch(addCard(activeCategoryId, listId, text));
       this.setState({ text: "" });
     }
   };
@@ -88,4 +90,8 @@ class ActionButton extends PureComponent<ActionButtonProps, ActionButtonState> {
   }
 }
 
-export default connect()(ActionButton);
+const mapStateToProps = (state: RootState) => ({
+  activeCategoryId: state.categoriesState.activeCategoryId,
+});
+
+export default connect(mapStateToProps)(ActionButton);

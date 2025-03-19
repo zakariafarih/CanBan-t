@@ -1,52 +1,140 @@
 .listcard-container {
-    padding: 4px;
-  }
-  
-  .listcard-card {
-    border-radius: 6px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-  }
-  
-  .listcard-body-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .listcard-text {
-    display: flex;
-    flex-direction: column;
-    font-size: 0.95rem;
-    color: #1f2937;
-  }
-  
-  .listcard-group {
-    margin-top: 4px;
-    color: #6b7280;
-    font-size: 0.8rem;
-  }
-  
-  .listcard-dropdown-btn {
-    background: transparent;
-    border: none;
-    color: #555;
-  }
-  
-  .listcard-edit-form {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-  
-  .listcard-edit-textarea {
-    width: 100%;
-    border: none;
-    outline: none;
-    resize: none;
-    padding: 0.5rem;
-  }
-  
-  .listcard-edit-btns {
-    display: flex;
-    gap: 0.5rem;
-  }
+  padding: 4px;
+  margin-bottom: 0.5rem; /* slight extra spacing */
+}
+
+.listcard-card {
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.listcard-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+}
+
+.listcard-body-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.listcard-text {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.95rem;
+  color: #1f2937;
+  flex: 1;
+  margin-right: 0.75rem;
+}
+
+.listcard-group {
+  margin-top: 4px;
+  color: #6b7280;
+  font-size: 0.8rem;
+}
+
+.listcard-dropdown-btn {
+  background: transparent;
+  border: none;
+  color: #555;
+  display: flex;
+  align-items: center;
+  transition: color 0.2s ease;
+}
+
+.listcard-dropdown-btn:hover {
+  color: #333;
+}
+
+/* =========== Edit Form Styling =========== */
+.listcard-edit-form {
+  display: flex;
+  flex-direction: column;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 0.75rem;
+}
+
+.listcard-edit-textarea {
+  width: 100%;
+  border: 2px solid #e5e7eb;
+  outline: none;
+  resize: none;
+  border-radius: 6px;
+  padding: 0.5rem;
+  font-size: 0.95rem;
+}
+
+.listcard-edit-textarea:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+/* The row that holds the Save/Cancel buttons */
+.listcard-edit-btns {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+}
+
+/* =========== Button Overrides =========== */
+
+/* Common button style overrides in edit form */
+.listcard-edit-btns .btn-save,
+.listcard-edit-btns .btn-cancel {
+  min-width: 90px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 0.45rem 1rem;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: all 0.2s ease;
+}
+
+/* Premium Save Button */
+.listcard-edit-btns .btn-save.btn-success {
+  background: linear-gradient(135deg, #10b981, #059669) !important;
+  border: none !important;
+  color: #ffffff !important;
+  box-shadow: 0 2px 4px rgba(16,185,129,0.2) !important;
+}
+
+.listcard-edit-btns .btn-save.btn-success:hover {
+  background: linear-gradient(135deg, #0ea875, #047857) !important;
+  box-shadow: 0 3px 7px rgba(16,185,129,0.3) !important;
+  transform: translateY(-1px);
+}
+
+.listcard-edit-btns .btn-save.btn-success:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 2px rgba(16,185,129,0.2) !important;
+}
+
+/* Premium Cancel Button */
+.listcard-edit-btns .btn-cancel.btn-secondary {
+  background: white !important;
+  border: 1px solid #d1d5db !important;
+  color: #4b5563 !important;
+}
+
+.listcard-edit-btns .btn-cancel.btn-secondary:hover {
+  background: #f3f4f6 !important;
+  border-color: #9ca3af !important;
+  color: #1f2937 !important;
+  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.06) !important;
+  transform: translateY(-1px);
+}
+
+.listcard-edit-btns .btn-cancel.btn-secondary:active {
+  transform: translateY(0);
+  background: #e5e7eb !important;
+}

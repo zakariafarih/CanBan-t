@@ -2,7 +2,10 @@ import { CONSTANTS } from "./index";
 
 export interface AddListAction {
   type: typeof CONSTANTS.ADD_LIST;
-  payload: string;
+  payload: {
+    categoryId: string;
+    listTitle: string;
+  };
 }
 
 export interface SortAction {
@@ -20,6 +23,7 @@ export interface SortAction {
 export interface EditTitleAction {
   type: typeof CONSTANTS.EDIT_LIST_TITLE;
   payload: {
+    categoryId: string;
     listId: string;
     newTitle: string;
   };
@@ -28,16 +32,15 @@ export interface EditTitleAction {
 export interface DeleteListAction {
   type: typeof CONSTANTS.DELETE_LIST;
   payload: {
+    categoryId: string;
     listId: string;
   };
 }
 
-export const addList = (title: string): AddListAction => {
-  return {
-    type: CONSTANTS.ADD_LIST,
-    payload: title,
-  };
-};
+export const addList = (categoryId: string, listTitle: string): AddListAction => ({
+  type: CONSTANTS.ADD_LIST,
+  payload: { categoryId, listTitle },
+});
 
 export const sort = (
   droppableIdStart: string,
@@ -46,38 +49,28 @@ export const sort = (
   droppableIndexEnd: number,
   draggableId: string,
   type: string
-): SortAction => {
-  return {
-    type: CONSTANTS.DRAG_HAPPENED,
-    payload: {
-      droppableIdStart,
-      droppableIdEnd,
-      droppableIndexStart,
-      droppableIndexEnd,
-      draggableId,
-      type,
-    },
-  };
-};
+): SortAction => ({
+  type: CONSTANTS.DRAG_HAPPENED,
+  payload: {
+    droppableIdStart,
+    droppableIdEnd,
+    droppableIndexStart,
+    droppableIndexEnd,
+    draggableId,
+    type,
+  },
+});
 
 export const editTitle = (
+  categoryId: string,
   listId: string,
   newTitle: string
-): EditTitleAction => {
-  return {
-    type: CONSTANTS.EDIT_LIST_TITLE,
-    payload: {
-      listId,
-      newTitle,
-    },
-  };
-};
+): EditTitleAction => ({
+  type: CONSTANTS.EDIT_LIST_TITLE,
+  payload: { categoryId, listId, newTitle },
+});
 
-export const deleteList = (listId: string): DeleteListAction => {
-  return {
-    type: CONSTANTS.DELETE_LIST,
-    payload: {
-      listId,
-    },
-  };
-};
+export const deleteList = (categoryId: string, listId: string): DeleteListAction => ({
+  type: CONSTANTS.DELETE_LIST,
+  payload: { categoryId, listId },
+});

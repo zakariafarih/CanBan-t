@@ -1,36 +1,49 @@
 .inputform-container {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-  
-  .inputform-card {
-    min-height: 40px;
-    min-width: 280px;
-    padding: 0.5rem;
-  }
-  
-  .inputform-textarea {
-    resize: none;
-    width: 100%;
-    outline: none;
-    border: none;
-    font-size: 1rem;
-  }
-  
-  .inputform-buttons {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-  
-  .inputform-close-btn {
-    background-color: #6b7280;
-    border: none;
-    padding: 0.45rem 0.7rem;
-    border-radius: 6px;
-    cursor: pointer;
-  }
-  .inputform-close-btn:hover {
-    background-color: #4b5563;
-  }
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.inputform-card {
+  min-height: 40px;
+  min-width: 280px;
+  padding: 0.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  background: #ffffff;
+}
+
+.inputform-textarea {
+  resize: none;
+  width: 100%;
+  outline: none;
+  border: none;
+  font-size: 1rem;
+  padding: 0.4rem;
+}
+
+.inputform-buttons {
+  display: flex;
+  justify-content: flex-end; 
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.inputform-save-btn {
+  min-width: 80px;
+  font-weight: 500;
+}
+
+.inputform-cancel-btn {
+  min-width: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  transition: background-color 0.2s ease;
+}
+
+.inputform-cancel-btn:hover {
+  opacity: 0.85;
+}

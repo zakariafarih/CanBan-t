@@ -20,35 +20,27 @@ export interface SetActiveCategoryAction {
   payload: { categoryId: string | null };
 }
 
-export const addCategory = (categoryName: string): AddCategoryAction => {
-  return {
-    type: CONSTANTS.ADD_CATEGORY,
-    payload: { categoryName },
-  };
-};
+export const addCategory = (categoryName: string): AddCategoryAction => ({
+  type: CONSTANTS.ADD_CATEGORY,
+  payload: { categoryName },
+});
 
 export const editCategory = (
   categoryId: string,
   newName: string
-): EditCategoryAction => {
-  return {
-    type: CONSTANTS.EDIT_CATEGORY,
-    payload: { categoryId, newName },
-  };
-};
+): EditCategoryAction => ({
+  type: CONSTANTS.EDIT_CATEGORY,
+  payload: { categoryId, newName },
+});
 
-export const deleteCategory = (categoryId: string): DeleteCategoryAction => {
-  return {
-    type: CONSTANTS.DELETE_CATEGORY,
-    payload: { categoryId },
-  };
-};
+export const deleteCategory = (categoryId: string): DeleteCategoryAction => ({
+  type: CONSTANTS.DELETE_CATEGORY,
+  payload: { categoryId },
+});
 
 export const setActiveCategory = (
   categoryId: string | null
-): SetActiveCategoryAction => {
-  return {
-    type: CONSTANTS.SET_ACTIVE_CATEGORY,
-    payload: { categoryId },
-  };
-};
+): SetActiveCategoryAction => ({
+  type: CONSTANTS.SET_ACTIVE_CATEGORY,
+  payload: { categoryId },
+});
